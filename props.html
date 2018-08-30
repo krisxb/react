@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>react组件传值</title>
+</head>
+<body>
+	<div id="app"></div>
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+	<script type="text/jsx">
+	var MessageBox = React.createClass({
+		getInitialState: function() {
+			return {
+				isVisible: true,
+				titleMessage:'认识学习react',
+				subMessages: [
+					'认识react',
+					'react传值',
+					'react事件',
+				]
+			}
+		},
+		render: function() {
+			var styleObj = {
+				display: this.state.isVisible ? 'block' : 'none',
+			}
+			return (
+					<div>
+					<h1 style={styleObj}>{this.state.titleMessage}</h1>
+					<Submessage messages = {this.state.subMessages}/>
+					</div>
+					)
+
+		}
+	});
+
+	var Submessage = React.createClass({
+		propTypes:{
+			messages:React.PropTypes.array.isRequired,
+		},
+		getDefaultProps:function() {
+			return {
+				messages:['默认的子消息']
+			}
+		},
+		render: function() {
+			var msgs = [];
+		this.props.messages.forEach(function(ele, index) {
+			msgs.push(
+				<p>传递的数值：{ele} </p>
+				)
+		})
+			return (
+				<h3>{msgs}</h3>
+				)
+		}
+	});
+	var messageBox = React.render(
+		<MessageBox/>, document.getElementById('app'), function() {
+			console.log('渲染完成了')
+		}
+		)
+	//错误的原因：标签没有闭合
+	</script>	
+</body>
+</html>

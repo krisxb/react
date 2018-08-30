@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>react进阶</title>
+</head>
+<body>
+	<div id="app"></div>
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+	<script type="text/jsx">
+		//定义一个方法
+		var ClickApp = React.createClass({  
+
+		getInitialSate: function() {
+			return {
+				clickCount: 0,  //逗号不可缺
+			}
+		},
+		handleClick:function (e) {
+			this.setState({
+				clickCount: this.state.clickCount + 1,
+			})
+		},
+		render:function() {
+			return (
+				<div>
+					<h2>点击下面的按钮</h2>
+					<button onClick={this.handleClick}>点击我</button>
+				</div>
+			)
+		}
+	})
+
+		var clickComponent = React.render(
+			<ClickApp/>,
+			document.getElementById('app')
+			)
+	</script>
+</body>
+</html>

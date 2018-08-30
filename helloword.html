@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<div id="app"></div>
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+	<script type="text/jsx">
+		/*组件的嵌套：显示不出来的原因是变量的首字母没有大写
+			根据
+		*/
+		var MessageBox =  React.createClass({
+			getInitialState:function () {
+				return {
+					isVisible:true,
+					titleMessage:'react学习世界',
+				}
+			},
+			/*不能直接改变state的状态，而是通过setState来改变*/
+			render:function() {
+			var style = {
+				display:this.state.isVisible ? 'block' :'none'
+			}
+				return (
+					<div>
+						<h1>{this.state.titleMessage} </h1>
+					</div>
+					)
+			}
+			
+		});
+
+		var SubMessage = React.createClass({
+			render:function() {
+				return (
+						<div>
+							学习react很有意思
+						</div>
+					)
+			}
+		})
+
+		React.render(<MessageBox/>,document.getElementById('app'),function() {
+			console.log('渲染完成了');
+		})
+
+	</script>
+
+	
+		<!-- jsx是javascript的扩展 -->
+
+		<!-- 组件的嵌套 -->
+</body>
+</html>

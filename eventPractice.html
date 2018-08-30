@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件</title>
+</head>
+<body>
+	<div id="app"></div>
+	<script src="bower_components/react/react.js"></script>
+	<script src="bower_components/react/JSXTransformer.js"></script>
+	<script type="text/jsx">
+		var ClickApp = React.createClass({
+			getInitialState: function() {
+				return {
+					isVisible:true,
+					titileMessage:'学习react',
+					subMessage:[
+						'认识react',
+						'组件嵌套',
+						'组件之间的传值',
+					]
+				}
+			},
+			handleClick:function(e) {
+				this.setState({
+					clickCount: this.state.clickCount + 1,
+				})
+				console.log(e.nativeEvent)
+			},
+			render:function() {
+				return (
+					<div>
+						<h2>点击下面的按钮</h2>
+						<button onClick={this.handleClick}>点击我</button>
+						<p>{this.state.clickCount}</p>
+					</div>
+					)
+			}
+		})
+		//定义的时候首字母要大写，onClick事件要大写
+
+		var clickComponent = React.render(
+			<ClickApp/>,
+			document.getElementById('app')
+			)
+	</script>
+</body>
+</html>
